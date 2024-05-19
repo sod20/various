@@ -1,0 +1,27 @@
+function organizeGifts(gifts) {
+  //process a
+  let pivot=0
+  let result=""
+  for(let index=0;index<gifts.length;index++) {
+    console.log("Checking" + gifts.charAt(index))
+    if(isNaN(gifts.charAt(index))) {
+      let amount = Number(gifts.substring(pivot, index))
+      let type = gifts.charAt(index)
+      console.log(`Amount ${amount}`)
+      console.log(`Type ${type}`)
+      if(amount > 50) {
+        result = result + `[${type}]`.repeat(amount/50)
+        amount = amount%50
+      }
+      if(amount>10) {
+        result = result + `{${type}}`.repeat(amount/10)
+        amount = amount%10
+      }
+      if(amount>0) {
+        result = result + "(" + type.repeat(amount) + ")"
+      }
+      pivot=index+1
+    }
+  }
+  return result
+}
